@@ -92,7 +92,7 @@ class AuthMiddleware extends StatelessWidget {
             return NoInternetPage();
           } else {
             return FutureBuilder<http.Response>(
-              future: _checkUrlAvailability(urlConsumo),
+              future: _checkUrlAvailability(urlConsumoValidador),
               builder: (context, responseSnapshot) {
                 if (responseSnapshot.connectionState ==
                     ConnectionState.waiting) {
@@ -124,7 +124,7 @@ class AuthMiddleware extends StatelessWidget {
 
   Future<http.Response> _checkUrlAvailability(String url) async {
     try {
-      return await http.get(Uri.parse(url));
+      return await http.get(Uri.parse("${url}"));
     } catch (e) {
       return http.Response('Error', 500);
     }
