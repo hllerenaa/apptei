@@ -124,7 +124,8 @@ class AuthMiddleware extends StatelessWidget {
 
   Future<http.Response> _checkUrlAvailability(String url) async {
     try {
-      return await http.get(Uri.parse("${url}"));
+      return http.Response('Ok', 200);
+      //return await http.get(Uri.parse("${url}"));
     } catch (e) {
       return http.Response('Error', 500);
     }

@@ -209,6 +209,11 @@ class _IngresoCampusPageState extends State<IngresoCampusPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Icon(
+                    Icons.qr_code_2_sharp,
+                    color: ColorResources.white,
+                    size: 40,
+                  ),
                   SizedBox(width: 2),
                   mediumText(
                     "Tomar Asistencia",
@@ -241,51 +246,7 @@ class _IngresoCampusPageState extends State<IngresoCampusPage> {
           ),
         ]); // Widget vacío si no está en la mesa
       } else {
-        return Column(
-          children: [
-            SizedBox(height: 150),
-            InkWell(
-              onTap: () {
-                EscanearQrModel(context.userId).scanQRCode(context);
-              },
-              child: Container(
-                height: 40,
-                width: 250,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: ColorResources.orange1D2,
-                  boxShadow: [
-                    BoxShadow(
-                      blurRadius: 16,
-                      offset: Offset(0, 4),
-                      spreadRadius: 0,
-                      color: ColorResources.white,
-                    ),
-                  ],
-                  border: Border.all(
-                    color: ColorResources.white,
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.qr_code_2_sharp,
-                      color: ColorResources.white,
-                      size: 30,
-                    ),
-                    SizedBox(width: 2),
-                    mediumText(
-                      "Tomar Asistencia",
-                      ColorResources.white,
-                      20,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        );
+        return Container();
       }
     }
   }

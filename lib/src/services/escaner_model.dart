@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:apptei/src/widget/extends_files.dart';
 
 void openModal(BuildContext context, Map<String, dynamic> data) {
