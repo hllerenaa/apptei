@@ -107,7 +107,7 @@ class EscanearQrModel extends ChangeNotifier {
           'foto': "${urlConsumo}/${persona_['foto_perfil']}",
           'nombre': persona_['nombre_completo'],
           'cedula': persona_['documento'],
-          'message': data['message'],
+          'message': data['msg'],
           'activo': data['acceso'],
         });
       } else {

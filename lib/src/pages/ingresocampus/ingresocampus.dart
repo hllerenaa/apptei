@@ -78,6 +78,7 @@ class _IngresoCampusPageState extends State<IngresoCampusPage> {
             version: QrVersions.auto,
             size: 200.0,
           ),
+          SizedBox(height: 20),
           Container(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 10),
@@ -117,6 +118,18 @@ class _IngresoCampusPageState extends State<IngresoCampusPage> {
                 ],
               ),
             ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(height: 10),
+                  boldText(carrera, ColorResources.blue1D3, 14),
+                ],
+              ),
+            ],
           ),
         ],
       );
@@ -271,13 +284,13 @@ class _IngresoCampusPageState extends State<IngresoCampusPage> {
                   ),
                 )
               : Padding(
-                  padding: EdgeInsets.symmetric(vertical: 50),
+                  padding: EdgeInsets.symmetric(vertical: 100),
                   child: Center(
                     child: Column(
                       children: [
                         SizedBox(height: 5),
                         regularText(
-                          "Error al generar codigo QR \n ${qrCodeData}",
+                          "Error: \n ${qrCodeData}",
                           ColorResources.redD90,
                           14,
                         ),
@@ -313,7 +326,7 @@ class _IngresoCampusPageState extends State<IngresoCampusPage> {
                                   width: 20,
                                   height: 20,
                                 ),
-                                SizedBox(width: 2),
+                                SizedBox(width: 3),
                                 mediumText(
                                   "Realizar nueva consulta",
                                   ColorResources.blue1D3,

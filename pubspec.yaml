@@ -12,6 +12,7 @@ dependencies:
     sdk: flutter
   connectivity_plus: ^2.0.2
   http: ^0.13.4
+  word_break_text: any # or the latest version on pub.dev
   auto_size_text: 3.0.0
   cached_network_image: 3.2.1
   flutter_animate: 4.1.1+1
