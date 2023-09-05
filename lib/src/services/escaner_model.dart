@@ -96,19 +96,23 @@ class EscanearQrModel extends ChangeNotifier {
 
     // Make HTTP request and show Sweet Alert
     try {
-      final response = await http.get(Uri.parse(
-          '${urlConsumo}/apimobile/v1/tei/ingresocampus?action=validateCode&qr=${scan}&id=${idpersona}'));
-      final data = jsonDecode(response.body);
-      if (data['success']) {
-        Navigator.pop(context); // Close the loading indicator dialog
+      final response = await BackendService.get(
+          '${urlConsumo}/apimobile/v1/tei/ingresocampus/',
+          params: {
+            'qr': "${scan}",
+            'id': "${idpersona}",
+            'action': 'validateCode'
+          });
 
-        final persona_ = data['aData'];
+      if (response['success']) {
+        Navigator.pop(context); // Close the loading indicator dialog
+        final persona_ = response['aData'];
         openModal(context, {
-          'foto': "${urlConsumo}/${persona_['foto_perfil']}",
+          'foto': "${persona_['foto_perfil']}",
           'nombre': persona_['nombre_completo'],
           'cedula': persona_['documento'],
-          'message': data['msg'],
-          'activo': data['acceso'],
+          'message': response['msg'],
+          'activo': response['acceso'],
         });
       } else {
         Navigator.pop(context); // Close the loading indicator dialog
@@ -118,7 +122,7 @@ class EscanearQrModel extends ChangeNotifier {
           type: QuickAlertType.error,
           confirmBtnText: 'Listo',
           title: 'Oops...',
-          text: data['msg'],
+          text: response['msg'],
         );
       }
     } catch (e) {
