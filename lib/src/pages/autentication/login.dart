@@ -46,11 +46,11 @@ class _LoginPageState extends State<LoginPage> {
                         child: lightText("Versión: ${version}",
                             ColorResources.grey6B7, 16, TextAlign.center),
                       ),
-                      Image.asset(
-                        Images.logindetalle,
-                        height: 100,
-                        width: 250,
-                      ),
+                     // Image.asset(
+                      //  Images.logindetalle,
+                     //   height: 100,
+                      //  width: 250,
+                    //  ),
                       Center(
                         child: Image.asset(
                           Images.logo,
