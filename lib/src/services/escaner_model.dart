@@ -16,8 +16,14 @@ void openModal(BuildContext context, Map<String, dynamic> data) {
           children: [
             SizedBox(height: 16),
             CircleAvatar(
-              radius: 50,
-              backgroundImage: NetworkImage(data['foto']),
+              radius: 40,
+              backgroundColor: ColorResources.blue1D3,
+              child: ClipOval(
+                child: ImageFile(
+                  imagePath: "${data['foto']}",
+                  isNetworkImage: true, // Es una imagen de la red
+                ),
+              ),
             ),
             SizedBox(height: 16),
             Text(
@@ -33,6 +39,14 @@ void openModal(BuildContext context, Map<String, dynamic> data) {
                   horizontal: 16), // Espaciado izquierdo y derecho
               child: Text(
                 data['message'],
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: 16), // Espaciado izquierdo y derecho
+              child: Text(
+                data['mesa'],
                 style: TextStyle(fontSize: 16),
               ),
             ),
@@ -113,6 +127,7 @@ class EscanearQrModel extends ChangeNotifier {
           'cedula': persona_['documento'],
           'message': response['msg'],
           'activo': response['acceso'],
+          'mesa': persona_['mesa'],
         });
       } else {
         Navigator.pop(context); // Close the loading indicator dialog
