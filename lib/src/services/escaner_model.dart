@@ -1,0 +1,144 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:apptei/src/widget/extends_files.dart';
+
+void openModal(BuildContext context, Map<String, dynamic> data) {
+  showModalBottomSheet(
+    context: context,
+    builder: (BuildContext context) {
+      return Container(
+        height: 600,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(height: 16),
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: NetworkImage(data['foto']),
+            ),
+            SizedBox(height: 16),
+            Text(
+              data['nombre'],
+              style: TextStyle(fontSize: 20),
+            ),
+            Text(
+              data['cedula'],
+              style: TextStyle(fontSize: 16),
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: 16), // Espaciado izquierdo y derecho
+              child: Text(
+                data['message'],
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            SizedBox(height: 16),
+            // Widget animado según el valor de data['activo']
+            AnimatedContainer(
+              duration: Duration(milliseconds: 500),
+              width: 50,
+              height: 50,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: data['activo'] ? Colors.green : Colors.red,
+              ),
+              child: Icon(
+                data['activo'] ? Icons.check : Icons.close,
+                color: Colors.white,
+                size: 30,
+              ),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('Cerrar'),
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFFFC7E00), // Color del botón
+              ),
+            ),
+            SizedBox(height: 16),
+          ],
+        ),
+      );
+    },
+  );
+}
+
+class EscanearQrModel extends ChangeNotifier {
+  final FocusNode unfocusNode = FocusNode();
+  String? scan = '0';
+  int? idpersona = 0;
+
+  EscanearQrModel(this.idpersona);
+
+  Future<void> scanQRCode(BuildContext context) async {
+    scan = await FlutterBarcodeScanner.scanBarcode(
+      '#fc7e00', // scanning line color
+      'Cancelar', // cancel button text
+      true, // whether to show the flash icon
+      ScanMode.QR,
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+
+    // Make HTTP request and show Sweet Alert
+    try {
+      final response = await http.get(Uri.parse(
+          '${urlConsumo}/apimobile/v1/tei/ingresocampus?action=validateCode&qr=${scan}&id=${idpersona}'));
+      final data = jsonDecode(response.body);
+      if (data['success']) {
+        Navigator.pop(context); // Close the loading indicator dialog
+
+        final persona_ = data['aData'];
+        openModal(context, {
+          'foto': "${urlConsumo}/${persona_['foto_perfil']}",
+          'nombre': persona_['nombre_completo'],
+          'cedula': persona_['documento'],
+          'message': data['message'],
+          'activo': data['acceso'],
+        });
+      } else {
+        Navigator.pop(context); // Close the loading indicator dialog
+
+        QuickAlert.show(
+          context: context,
+          type: QuickAlertType.error,
+          confirmBtnText: 'Listo',
+          title: 'Oops...',
+          text: data['msg'],
+        );
+      }
+    } catch (e) {
+      Navigator.pop(context); // Close the loading indicator dialog
+
+      QuickAlert.show(
+        context: context,
+        type: QuickAlertType.error,
+        confirmBtnText: 'Listo',
+        title: 'Oops...',
+        text: 'Error al obtener datos: $e',
+      );
+    }
+
+    notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    unfocusNode.dispose();
+    super.dispose();
+  }
+}
