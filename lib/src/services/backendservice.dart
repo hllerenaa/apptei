@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:apptei/src/pages/utils/enmantenimiento.dart';
 
 class BackendService {
   static Future<Map<String, dynamic>> get(String url,
@@ -10,7 +11,7 @@ class BackendService {
     if (response.statusCode == 200) {
       return json.decode(response.body);
     } else {
-      throw Exception("Error en la solicitud al backend");
+      throw Exception("Error al enviar los datos");
     }
   }
 }

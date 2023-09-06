@@ -89,13 +89,13 @@ class _IngresoCampusPageState extends State<IngresoCampusPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 10),
-                      boldText("Nombres", ColorResources.grey6B7, 14),
+                      boldText("Nombres", ColorResources.grey6B7, 11),
                       SizedBox(height: 10),
-                      boldText("Apellidos", ColorResources.grey6B7, 14),
+                      boldText("Apellidos", ColorResources.grey6B7, 11),
                       SizedBox(height: 10),
-                      boldText("Lugar Votación", ColorResources.grey6B7, 14),
+                      boldText("Lugar Votación", ColorResources.grey6B7, 11),
                       SizedBox(height: 10),
-                      boldText("Facultad", ColorResources.grey6B7, 14),
+                      boldText("Facultad", ColorResources.grey6B7, 11),
                       SizedBox(height: 10),
                     ],
                   ),
@@ -104,14 +104,14 @@ class _IngresoCampusPageState extends State<IngresoCampusPage> {
                     children: [
                       SizedBox(height: 10),
                       boldText(
-                          context.userFirstName, ColorResources.blue1D3, 14),
+                          context.userFirstName, ColorResources.blue1D3, 11),
                       SizedBox(height: 10),
                       boldText(
-                          context.userLastName, ColorResources.blue1D3, 14),
+                          context.userLastName, ColorResources.blue1D3, 11),
                       SizedBox(height: 10),
-                      boldText(lugarvotacion, ColorResources.blue1D3, 14),
+                      boldText(lugarvotacion, ColorResources.blue1D3, 11),
                       SizedBox(height: 10),
-                      boldText(facultad, ColorResources.blue1D3, 14),
+                      boldText(facultad, ColorResources.blue1D3, 11),
                       SizedBox(height: 10),
                     ],
                   ),
@@ -227,7 +227,7 @@ class _IngresoCampusPageState extends State<IngresoCampusPage> {
         ],
       );
     } else {
-      if (isEnMesa && !generaqr) {
+      if (!generaqr) {
         return Column(children: [
           SizedBox(height: 20),
           Center(
@@ -239,12 +239,12 @@ class _IngresoCampusPageState extends State<IngresoCampusPage> {
           ),
           SizedBox(height: 40),
           boldText(
-            "Usted no es miembro de mesa receptora del voto",
+            "Usted no es miembro de mesa receptora del voto, ni del personal de logistica",
             ColorResources.orange1D2,
             30,
             TextAlign.center,
           ),
-        ]); // Widget vacío si no está en la mesa
+        ]);
       } else {
         return Container();
       }
