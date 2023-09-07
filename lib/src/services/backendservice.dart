@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:apptei/src/pages/utils/enmantenimiento.dart';
 
 class BackendService {
   static Future<Map<String, dynamic>> get(String url,

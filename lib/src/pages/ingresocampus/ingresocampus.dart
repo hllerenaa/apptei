@@ -126,7 +126,7 @@ class _IngresoCampusPageState extends State<IngresoCampusPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: 10),
-                  boldText(carrera, ColorResources.blue1D3, 14),
+                  boldText(carrera, ColorResources.blue1D3, 11),
                 ],
               ),
             ],
@@ -146,7 +146,7 @@ class _IngresoCampusPageState extends State<IngresoCampusPage> {
           boldText(
             "Usted es miembro de la junta receptora \n ${lugarmesa}",
             ColorResources.redD90,
-            18,
+            14,
             TextAlign.center,
           ),
           Container(
@@ -159,11 +159,11 @@ class _IngresoCampusPageState extends State<IngresoCampusPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(height: 20),
-                      boldText("Nombres", ColorResources.grey6B7, 14),
+                      boldText("Nombres", ColorResources.grey6B7, 11),
                       SizedBox(height: 10),
-                      boldText("Apellidos", ColorResources.grey6B7, 14),
+                      boldText("Apellidos", ColorResources.grey6B7, 11),
                       SizedBox(height: 10),
-                      boldText("Rol", ColorResources.grey6B7, 14),
+                      boldText("Rol", ColorResources.grey6B7, 11),
                     ],
                   ),
                   Column(
@@ -171,12 +171,12 @@ class _IngresoCampusPageState extends State<IngresoCampusPage> {
                     children: [
                       SizedBox(height: 10),
                       boldText(
-                          context.userFirstName, ColorResources.blue1D3, 14),
+                          context.userFirstName, ColorResources.blue1D3, 11),
                       SizedBox(height: 10),
                       boldText(
-                          context.userLastName, ColorResources.blue1D3, 14),
+                          context.userLastName, ColorResources.blue1D3, 11),
                       SizedBox(height: 10),
-                      boldText(rolmesa, ColorResources.blue1D3, 14),
+                      boldText(rolmesa, ColorResources.blue1D3, 11),
                     ],
                   ),
                 ],

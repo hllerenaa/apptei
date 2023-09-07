@@ -35,10 +35,10 @@ void openModal(BuildContext context, Map<String, dynamic> data) {
             Padding(
               padding: EdgeInsets.symmetric(
                   horizontal: 16), // Espaciado izquierdo y derecho
-              child: Text(
+              child: Center(child: Text(
                 data['message'],
                 style: TextStyle(fontSize: 16),
-              ),
+              ),) 
             ),
             Padding(
               padding: EdgeInsets.symmetric(
