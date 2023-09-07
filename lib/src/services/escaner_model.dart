@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:apptei/src/widget/extends_files.dart';
 
@@ -33,8 +32,7 @@ void openModal(BuildContext context, Map<String, dynamic> data) {
               style: TextStyle(fontSize: 16),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: 16), // Espaciado izquierdo y derecho
+              padding: EdgeInsets.symmetric(horizontal: 40), // Espaciado izquierdo y derecho
               child: Center(child: Text(
                 data['message'],
                 style: TextStyle(fontSize: 16),
